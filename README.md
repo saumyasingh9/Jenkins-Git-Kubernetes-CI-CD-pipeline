@@ -1,1 +1,0 @@
-# Jenkins-Git-Kubernetes-CI-CD-pipeline

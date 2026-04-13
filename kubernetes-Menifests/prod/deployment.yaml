@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-k8s-app
+  labels:
+    app: jenkins-k8s-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jenkins-k8s-app
+  template:
+    metadata:
+      labels:
+        app: jenkins-k8s-app
+    spec:
+      containers:
+      - name: jenkins-k8s-app
+        image: IMAGE_NAME   # replaced dynamically in pipeline
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+          limits:
+            cpu: "1"
+            memory: "2Gi"
