@@ -31,6 +31,8 @@ Required plugins:
 
 -GitHub Integration (for webhooks/triggers)
 
+-Kubernetes CLI + Kubernetes Credentials
+
 Docker
 
 -Docker installed on Jenkins agent
