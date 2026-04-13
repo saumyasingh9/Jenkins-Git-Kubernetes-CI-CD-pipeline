@@ -1,4 +1,4 @@
-**Setup Instructions for CI/CD Pipeline with Git, Jenkins, and Kubernetes**
+**☸️Setup Instructions for CI/CD Pipeline with Git, Jenkins, and Kubernetes**
 
 **Overview**
 
@@ -15,7 +15,7 @@ The pipeline automates:
 -Validating deployments and cleaning up resources
 
 
-**Prerequisites**
+**⚙️Prerequisites**
 
 Jenkins
 
