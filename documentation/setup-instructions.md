@@ -55,15 +55,61 @@ Contains:
 🔑 Jenkins Credentials Setup
 Create the following credentials in Jenkins:
 
-Purpose	                    ID	                     Type	                       Example Value
+-GitHub Access
 
-GitHub Access          	github-creds    	   Username/Password or PAT	        GitHub username + PAT
-Docker Registry	        docker-cred	              Username/Password	            Docker Hub credentials
-Docker Image Name	    docker-image-name	        Secret Text                spring-boot-web
-Docker Registry URL  	docker-registry-url        	Secret Text	                docker.io/username
-Kubeconfig (dev)	    kubeconfig-dev	               File	                    Upload dev kubeconfig
-Kubeconfig (staging)	kubeconfig-staging	           File	                    Upload staging kubeconfig
-Kubeconfig (prod)	    kubeconfig-prod	               File	                     Upload prod kubeconfig
+ID: github-creds
+
+Type: Username/Password or Personal Access Token (PAT)
+
+Example: GitHub username + PAT
+
+-Docker Registry
+
+ID: docker-cred
+
+Type: Username/Password
+
+Example: Docker Hub credentials
+
+-Docker Image Name
+
+ID: docker-image-name
+
+Type: Secret Text
+
+Example: spring-boot-web
+
+-Docker Registry URL
+
+ID: docker-registry-url
+
+Type: Secret Text
+
+Example: docker.io/username
+
+-Kubeconfig (dev)
+
+ID: kubeconfig-dev
+
+Type: File
+
+Example: Upload dev kubeconfig
+
+-Kubeconfig (staging)
+
+ID: kubeconfig-staging
+
+Type: File
+
+Example: Upload staging kubeconfig
+
+-Kubeconfig (prod)
+
+ID: kubeconfig-prod
+
+Type: File
+
+Example: Upload prod kubeconfig
 
 
 🗂 Git Repository Configuration
