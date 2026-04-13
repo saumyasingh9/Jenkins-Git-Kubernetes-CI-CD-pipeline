@@ -1,6 +1,6 @@
 **Setup Instructions for CI/CD Pipeline with Git, Jenkins, and Kubernetes**
 
-** Overview**
+**Overview**
 
 This document explains how to configure and run the CI/CD pipeline defined in the Jenkinsfile.
 
@@ -59,6 +59,7 @@ GitHub Repository Contains:
 
 
 🔑 **Jenkins Credentials Setup**
+
 Create the following credentials in Jenkins:
 
 -GitHub Access
@@ -157,7 +158,7 @@ Code
 -This ensures Jenkins triggers automatically on commits.
 
 
-☸** Kubernetes Cluster Integration**
+☸ **Kubernetes Cluster Integration**
 
 1. Export kubeconfig files 
 
@@ -204,7 +205,7 @@ You should see cluster nodes listed here.
 -DEPLOYMENT_NAME → Kubernetes deployment name (must match metadata.name in manifest)
 
 
-⚙️**Setup Steps**
+⚙️ **Setup Steps**
 
 1. Clone repository into Jenkins pipeline job.
 
