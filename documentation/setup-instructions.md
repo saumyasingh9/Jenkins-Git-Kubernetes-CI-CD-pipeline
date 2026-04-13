@@ -1,6 +1,9 @@
-Setup Instructions for CI/CD Pipeline with Git, Jenkins, and Kubernetes
-📖 Overview
+**Setup Instructions for CI/CD Pipeline with Git, Jenkins, and Kubernetes**
+
+** Overview**
+
 This document explains how to configure and run the CI/CD pipeline defined in the Jenkinsfile.
+
 The pipeline automates:
 
 -Building Docker images from a Git repository
@@ -12,9 +15,11 @@ The pipeline automates:
 -Validating deployments and cleaning up resources
 
 
-🛠 Prerequisites
+**Prerequisites**
+
 Jenkins
-Installed Jenkins server (controller + agent with Docker installed)
+
+-Installed Jenkins server (controller + agent with Docker installed)
 
 Required plugins:
 
@@ -27,19 +32,20 @@ Required plugins:
 -GitHub Integration (for webhooks/triggers)
 
 Docker
+
 -Docker installed on Jenkins agent
 
 -Access to a Docker registry (e.g., Docker Hub, ECR, GCR)
 
 Kubernetes
+
 -Three clusters: dev, staging, prod
 
 -Exported kubeconfig files for each cluster
 
 -kubectl installed on Jenkins agent
 
-GitHub Repository
-Contains:
+GitHub Repository Contains:
 
 -Application source code
 
@@ -52,7 +58,7 @@ Contains:
 -documentation/ folder with setup guides
 
 
-🔑 Jenkins Credentials Setup
+🔑 **Jenkins Credentials Setup**
 Create the following credentials in Jenkins:
 
 -GitHub Access
@@ -112,8 +118,10 @@ Type: File
 Example: Upload prod kubeconfig
 
 
-🗂 Git Repository Configuration
+🗂 **Git Repository Configuration**
+
 1. Create/Use a GitHub repository  
+
 Example: https://github.com/saumyasingh9/Jenkins-Git-Kubernetes-CI-CD-pipeline.git
 
 2. Add files
@@ -149,14 +157,17 @@ Code
 -This ensures Jenkins triggers automatically on commits.
 
 
-☸ Kubernetes Cluster Integration
-1. Export kubeconfig files  
+☸** Kubernetes Cluster Integration**
+
+1. Export kubeconfig files 
+
 From each cluster (dev, staging, prod):
 
 bash
 kubectl config view --raw > kubeconfig-dev
 kubectl config view --raw > kubeconfig-staging
 kubectl config view --raw > kubeconfig-prod
+
 2. Upload kubeconfigs to Jenkins
 
 -Go to Manage Jenkins → Credentials → Global → Add Credentials
@@ -166,6 +177,7 @@ kubectl config view --raw > kubeconfig-prod
 -IDs: kubeconfig-dev, kubeconfig-staging, kubeconfig-prod
 
 3. Pipeline reference  
+
 The Jenkinsfile dynamically injects the correct kubeconfig based on the ENVIRONMENT 
 
 withCredentials([file(credentialsId: "kubeconfig-${params.ENVIRONMENT}", variable: 'KUBECONFIG')]) {
@@ -173,6 +185,7 @@ withCredentials([file(credentialsId: "kubeconfig-${params.ENVIRONMENT}", variabl
 }
 
 4. Verify connectivity  
+
 Run inside Jenkins agent:
 
 kubectl --kubeconfig=$KUBECONFIG get nodes
@@ -180,7 +193,8 @@ kubectl --kubeconfig=$KUBECONFIG get nodes
 You should see cluster nodes listed here.
 
 
-⚙️ Pipeline Parameters
+⚙️ **Pipeline Parameters**
+
 -REPO_URL → Git repository URL
 
 -BRANCH → Git branch to build from
@@ -190,7 +204,8 @@ You should see cluster nodes listed here.
 -DEPLOYMENT_NAME → Kubernetes deployment name (must match metadata.name in manifest)
 
 
-⚙️Setup Steps
+⚙️**Setup Steps**
+
 1. Clone repository into Jenkins pipeline job.
 
 2. Configure credentials in Jenkins as described above.
@@ -212,7 +227,8 @@ You should see cluster nodes listed here.
 -Cleanup → Removes dangling Docker images
 
 
-🔍 Verification
+🔍 **Verification**
+
 After pipeline run, check deployment status:
 
 bash
@@ -222,7 +238,8 @@ kubectl get deployments
 kubectl rollout status deployment/<DEPLOYMENT_NAME>
 
 
-🔒 Security Notes
+🔒 **Security Notes**
+
 -Store all secrets in Jenkins credentials, never in code.
 
 -Use kubeconfig file credentials for cluster access.
