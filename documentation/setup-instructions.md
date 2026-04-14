@@ -235,9 +235,13 @@ You should see cluster nodes listed here.
 After pipeline run, check deployment status:
 
 bash
+
 kubectl get pods
+
 kubectl get svc
+
 kubectl get deployments
+
 kubectl rollout status deployment/<DEPLOYMENT_NAME>
 
 
